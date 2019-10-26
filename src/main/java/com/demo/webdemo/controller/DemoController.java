@@ -1,10 +1,10 @@
 package com.demo.webdemo.controller;
 
 import com.demo.webdemo.entity.EventBusDao;
+import com.demo.webdemo.util.PrintUtil;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
@@ -25,7 +25,7 @@ public class DemoController {
     @RequestMapping("requestPic")
     public void requestPic(HttpServletResponse response) {
         try {
-            File file = new File("D:\\checked_upload_blue128.png");
+            File file = new File("E:\\图片\\不要点开\\luawzGs.gif");
             response.setContentType("image/png");
             FileInputStream fis = new FileInputStream(file);
             if (fis != null) {
@@ -52,6 +52,7 @@ public class DemoController {
         EventBusDao dao = new EventBusDao("wyy", 100, "man");
         Gson gson = new GsonBuilder().disableHtmlEscaping().create();
         String content = gson.toJson(dao);
+        PrintUtil.d("DemoController requestJsonContent (DemoController.java : 56)", dao);
         return content;
     }
 }
