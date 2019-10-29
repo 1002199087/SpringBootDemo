@@ -4,11 +4,13 @@ import com.demo.webdemo.common.Constant;
 import com.demo.webdemo.entity.EventBusDao;
 import com.demo.webdemo.entity.request.UploadInfoRequest;
 import com.demo.webdemo.entity.response.SimpeResponseDao;
+import com.demo.webdemo.repository.UserRepository;
 import com.demo.webdemo.util.MathUtil;
 import com.demo.webdemo.util.PrintUtil;
 import com.demo.webdemo.util.TimeUtil;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -126,6 +128,10 @@ public class DemoController implements Constant {
         List<MultipartFile> files = request.getFiles("files");
         SimpeResponseDao responseDao = new SimpeResponseDao();
         boolean isSuccess = true;
+        File saveFile = new File(SAVE_FILE);
+        if (!saveFile.exists()) {
+            saveFile.mkdirs();
+        }
         for (int i = 0; i < files.size(); i++) {
             MultipartFile file = files.get(i);
             FileOutputStream outputStream = null;
@@ -180,6 +186,10 @@ public class DemoController implements Constant {
         int count = Integer.valueOf(infoRequest.getNum());
         List<MultipartFile> files = fileRequest.getFiles("files");
         if (count == files.size()) {
+            File saveFile = new File(SAVE_FILE);
+            if (!saveFile.exists()) {
+                saveFile.mkdirs();
+            }
             boolean isSuccess = true;
             for (int i = 0; i < files.size(); i++) {
                 MultipartFile file = files.get(i);
