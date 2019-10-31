@@ -21,7 +21,7 @@ import java.io.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/SpringBootDemo")
+@RequestMapping()
 public class DemoController implements Constant {
 
     /**

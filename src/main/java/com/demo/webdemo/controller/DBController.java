@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/SpringBootDemo/db")
+@RequestMapping(value = "/db")
 public class DBController implements Constant {
 
     @Autowired
